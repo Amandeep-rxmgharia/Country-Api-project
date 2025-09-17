@@ -47,7 +47,6 @@ export default function CountryDetail() {
       )
     })
   }
-
   useEffect(() => {
     if (state) {
       updateCountryData(state)
@@ -102,7 +101,7 @@ export default function CountryDetail() {
                   <b>Capital: {countryData.capital?.join(', ')}</b>
                 </p>
                 <p>
-                  <b>Top Level Domain: {countryData.tld}</b>
+                  <b>Top Level Domain: <div className='tld-container'>{countryData.tld.map((tld) => <span>{` ${tld}`}</span>)}</div></b>
                 </p>
                 <p>
                   <b>Currencies: <div className='currency-container'>{countryData.currencies.split(' ').map((curr) => <span>{` ${curr}`}</span>)}</div></b>
