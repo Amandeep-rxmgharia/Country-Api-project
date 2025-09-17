@@ -24,7 +24,7 @@ export default function CountryDetail() {
       capital: data.capital,
       flag: data.flags.svg,
       tld: data.tld,
-      languages: Object.values(data.languages || {}).join(', '),
+      languages: Object.values(data.languages || {}),
       currencies: Object.values(data.currencies || {})
         .map((currency) => currency.name)
         .join(', '),
@@ -68,7 +68,6 @@ export default function CountryDetail() {
   if (notFound) {
     return <div>Country Not Found</div>
   }
-
   return (
     <main id='country-details-main' className={`${isDark ? 'dark' : ''}`}>
       <div className="country-details-container">
@@ -87,40 +86,37 @@ export default function CountryDetail() {
                   <b>
                     Native Name: {countryData.nativeName || countryData.name}
                   </b>
-                  <span className="native-name"></span>
                 </p>
                 <p>
                   <b>
                     Population: {countryData.population.toLocaleString('en-IN')}
                   </b>
-                  <span className="population"></span>
                 </p>
                 <p>
                   <b>Region: {countryData.region}</b>
-                  <span className="region"></span>
                 </p>
                 <p>
                   <b>Sub Region: {countryData.subregion}</b>
-                  <span className="sub-region"></span>
                 </p>
                 <p>
                   <b>Capital: {countryData.capital?.join(', ')}</b>
-                  <span className="capital"></span>
                 </p>
                 <p>
                   <b>Top Level Domain: {countryData.tld}</b>
-                  <span className="top-level-domain"></span>
                 </p>
                 <p>
-                  <b>Currencies: {countryData.currencies}</b>
-                  <span className="currencies"></span>
+                  <b>Currencies: <div className='currency-container'>{countryData.currencies.split(' ').map((curr) => <span>{` ${curr}`}</span>)}</div></b>
                 </p>
                 <p>
-                  <b>Languages: {countryData.languages}</b>
-                  <span className="languages"></span>
+                  <b>Languages: <div className='language-container'>{countryData.languages.map((lang) => <span>{lang} &nbsp;</span>)}</div></b>
                 </p>
               </div>
-              {countryData.borders.length !== 0 && (
+              
+            </div>
+          </div>
+        )}
+      </div>
+      {countryData !== null && countryData.borders.length !== 0 && (
                 <div className="border-countries">
                   <b>Border Countries: </b>&nbsp;
                   {countryData.borders.map((border) => (
@@ -130,10 +126,6 @@ export default function CountryDetail() {
                   ))}
                 </div>
               )}
-            </div>
-          </div>
-        )}
-      </div>
     </main>
   )
 }

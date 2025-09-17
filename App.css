@@ -14,6 +14,7 @@ main.dark {
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 24px;
+  min-height: 100vh;
   /* height: calc(100vh - 75px); */
   /* height: max-content; */
 }
@@ -81,7 +82,6 @@ a {
 
 .country-card {
   display: inline-block;
-  width: 250px;
   border-radius: 8px;
   overflow: hidden;
   padding-bottom: 24px;
@@ -90,11 +90,20 @@ a {
   background-color: var(--elements-color);
 }
 
+.country-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .country-card:hover {
   transform: scale(1.03);
   box-shadow: 0 0 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+.flag-container {
+  height: 160px;
+  overflow-y: hidden;
+}
 .card-title {
   font-size: 24px;
   margin-block: 16px;
@@ -174,5 +183,8 @@ a {
 
   .search-filter-container {
     flex-direction: column;
+    margin-top: 0;
   }
+
+
 }
